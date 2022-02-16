@@ -11,12 +11,12 @@ import static streams._Stream.Gender.*;
 public class _Stream {
 	
 	enum Gender {
-		MALE,FEMALE;
+		MALE,FEMALE,NON_BINARY;
 	}
 	
 
 	public static void main(String[] args) {
-		List <Person> people = List.of(new Person("Tom", MALE)
+		List <Person> people = List.of(new Person("Tom", NON_BINARY)
 									,new Person("Tommy", MALE)
 									,new Person("Tomina", FEMALE)
 									,new Person("Tomatha", FEMALE));
@@ -26,7 +26,10 @@ public class _Stream {
 		System.out.println("Toms? -> " + tom);
 		System.out.println("Raabss? -> "+ people.stream().anyMatch(person -> person.name.equals("Raab")));
 		
-		Set<Gender> genders = people.stream().map( person -> person.gender).collect(Collectors.toSet());
+		people.stream()
+		.map( person -> person.gender)
+		.collect(Collectors.toSet())
+		.forEach(System.out::println);
 		
 
 	}
